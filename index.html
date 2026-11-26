@@ -765,6 +765,78 @@
             align-items: stretch;
         }
 
+        .projects-pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2.25rem;
+        }
+
+        .projects-pagination.hidden {
+            display: none;
+        }
+
+        .page-btn {
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: 50%;
+            border: 1px solid var(--border-glass);
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            color: var(--ink-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            border-color: var(--accent);
+            background: rgba(56, 189, 248, 0.14);
+            color: var(--accent);
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.28);
+            transform: translateY(-1px);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.32;
+            cursor: not-allowed;
+        }
+
+        .page-dots {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .page-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0;
+        }
+
+        .page-dot.active {
+            width: 24px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-indigo));
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.45);
+        }
+
+        .page-info {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--ink-muted);
+            min-width: 2.6rem;
+            text-align: center;
+        }
+
         /* 3D Flip Card Wrapper for the 3 AI Projects */
         .flip-card {
             perspective: 1200px;
@@ -1747,8 +1819,8 @@
             </div>
 
             <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">All (6)</button>
-                <button class="filter-btn" data-filter="ai">AI &amp; Agents (3)</button>
+                <button class="filter-btn active" data-filter="all">All (7)</button>
+                <button class="filter-btn" data-filter="ai">AI &amp; Agents (4)</button>
                 <button class="filter-btn" data-filter="ml">ML &amp; Data (3)</button>
             </div>
 
@@ -1862,7 +1934,63 @@
                     </div>
                 </article>
 
-                <!-- 3D Flip Card 3: Voice-Based Virtual Assistant (Myra) -->
+                <!-- 3D Flip Card 3: AI Shopping Agent -->
+                <article class="flip-card" data-category="ai" tabindex="0">
+                    <div class="flip-card-inner">
+                        <div class="flip-face flip-front">
+                            <div class="project-badge-row">
+                                <span class="project-kind">AI Agent</span>
+                            </div>
+                            <h3 class="project-title">AI Shopping Agent — Conversational Commerce</h3>
+                            <p class="project-description">
+                                Agent-first shopping assistant with FastAPI, PostgreSQL full-text search, LangChain
+                                tool calling, Google Gemini, and a Next.js 14 SSE-streaming UI.
+                            </p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">FastAPI</span>
+                                <span class="tech-tag">LangChain</span>
+                                <span class="tech-tag">Gemini</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Next.js 14</span>
+                            </div>
+                            <div class="project-footer">
+                                <a href="https://github.com/mukeshmadipelly/Shopping-Agent-Using-Langchain" class="project-github" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <i class="fab fa-github"></i>
+                                    <span>Source Code</span>
+                                </a>
+                                <span class="project-redirect-hint">Full-Stack AI</span>
+                            </div>
+                        </div>
+
+                        <div class="flip-face flip-back">
+                            <div>
+                                <div class="back-title">Architecture &amp; Highlights</div>
+                                <ul class="back-list">
+                                    <li><strong>PostgreSQL FTS:</strong> Weighted <code>tsvector</code> GIN index &amp;
+                                        triggers across 85+ products.</li>
+                                    <li><strong>8 Session Tools:</strong> Async LangChain tools for search, cart CRUD,
+                                        checkout &amp; orders.</li>
+                                    <li><strong>SSE Streaming:</strong> Real-time <code>/api/chat</code> tokens synced
+                                        with React <code>CartContext</code>.</li>
+                                    <li><strong>Multimodal &amp; EC2:</strong> Vision product search, guardrails &amp;
+                                        Docker Compose deploy.</li>
+                                </ul>
+                            </div>
+                            <div class="project-footer">
+                                <a href="https://github.com/mukeshmadipelly/Shopping-Agent-Using-Langchain" class="project-github" target="_blank"
+                                    rel="noopener noreferrer">
+                                    <i class="fab fa-github"></i>
+                                    <span>Open Repository</span>
+                                </a>
+                                <span class="project-redirect-hint"><i
+                                        class="fas fa-arrow-up-right-from-square"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3D Flip Card 4: Voice-Based Virtual Assistant (Myra) -->
                 <article class="flip-card" data-category="ai" tabindex="0">
                     <div class="flip-card-inner">
                         <div class="flip-face flip-front">
@@ -2000,6 +2128,17 @@
                     </div>
                 </article>
             </div>
+
+            <div class="projects-pagination" id="projects-pagination">
+                <button class="page-btn" id="proj-prev" aria-label="Previous projects page">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="page-dots" id="proj-dots"></div>
+                <span class="page-info" id="proj-page-info">1 / 2</span>
+                <button class="page-btn" id="proj-next" aria-label="Next projects page">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -2054,7 +2193,7 @@
                     <div class="skill-tags">
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">Java</span>
-                        <span class="skill-tag">JavaScript</span>
+                        <!-- <span class="skill-tag">JavaScript</span> -->
                         <span class="skill-tag">SQL</span>
                     </div>
                 </div>
@@ -2072,8 +2211,8 @@
                         <span class="skill-tag">Selenium</span>
                         <span class="skill-tag">Playwright</span>
                         <span class="skill-tag">n8n</span>
-                        <span class="skill-tag">Wexa.ai</span>
-                        <span class="skill-tag">Vertex AI Agent Engine</span>
+                        <!-- <span class="skill-tag">Wexa.ai</span> -->
+                        <!-- <span class="skill-tag">Vertex AI Agent Engine</span> -->
                     </div>
                 </div>
 
@@ -2093,11 +2232,11 @@
                         <span class="skill-tag">GraphQL</span>
                         <span class="skill-tag">RabbitMQ</span>
                         <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Snowflake</span>
+                        <!-- <span class="skill-tag">Snowflake</span> -->
                         <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">Svelte Kit</span>
+                        <!-- <span class="skill-tag">HTML5</span> -->
+                        <!-- <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Svelte Kit</span> -->
                     </div>
                 </div>
 
@@ -2115,7 +2254,7 @@
                         <span class="skill-tag">GitHub</span>
                         <span class="skill-tag">Docker</span>
                         <span class="skill-tag">Postman</span>
-                        <span class="skill-tag">Power BI</span>
+                        <!-- <span class="skill-tag">Power BI</span> -->
                         <span class="skill-tag">OOP</span>
                         <span class="skill-tag">Data Structures &amp; Algorithms</span>
                         <span class="skill-tag">System Design</span>
@@ -2498,20 +2637,87 @@
                 });
             });
 
-            // Project Category Filtering
+            // Project Category Filtering & Pagination (6 cards per page)
             const filterBtns = document.querySelectorAll('.filter-btn');
-            const allProjectCards = document.querySelectorAll('.flip-card, .simple-card');
+            const allProjectCards = Array.from(document.querySelectorAll('.flip-card, .simple-card'));
+            const paginationWrap = document.getElementById('projects-pagination');
+            const prevPageBtn = document.getElementById('proj-prev');
+            const nextPageBtn = document.getElementById('proj-next');
+            const pageDotsWrap = document.getElementById('proj-dots');
+            const pageInfoEl = document.getElementById('proj-page-info');
+            const PROJECTS_PER_PAGE = 6;
+            let activeFilter = 'all';
+            let currentPage = 1;
+
+            function renderProjectsPage() {
+                const matching = allProjectCards.filter(card => {
+                    const cat = card.getAttribute('data-category');
+                    return activeFilter === 'all' || cat === activeFilter;
+                });
+
+                const totalPages = Math.max(1, Math.ceil(matching.length / PROJECTS_PER_PAGE));
+                if (currentPage > totalPages) currentPage = totalPages;
+
+                const start = (currentPage - 1) * PROJECTS_PER_PAGE;
+                const end = start + PROJECTS_PER_PAGE;
+                const visibleSet = new Set(matching.slice(start, end));
+
+                allProjectCards.forEach(card => {
+                    card.classList.toggle('hidden-card', !visibleSet.has(card));
+                });
+
+                if (totalPages <= 1) {
+                    paginationWrap.classList.add('hidden');
+                } else {
+                    paginationWrap.classList.remove('hidden');
+                    prevPageBtn.disabled = currentPage === 1;
+                    nextPageBtn.disabled = currentPage === totalPages;
+                    pageInfoEl.textContent = `${currentPage} / ${totalPages}`;
+                    pageDotsWrap.innerHTML = Array.from({ length: totalPages }, (_, i) => {
+                        const pageNum = i + 1;
+                        return `<button class="page-dot ${pageNum === currentPage ? 'active' : ''}" data-page="${pageNum}" aria-label="Page ${pageNum}"></button>`;
+                    }).join('');
+                }
+            }
+
+            function changePage(newPage) {
+                currentPage = newPage;
+                renderProjectsPage();
+                const projectsSection = document.getElementById('projects');
+                if (projectsSection) {
+                    const top = projectsSection.offsetTop - 80;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            }
 
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', function () {
-                    const filter = this.getAttribute('data-filter');
+                    activeFilter = this.getAttribute('data-filter');
+                    currentPage = 1;
                     filterBtns.forEach(b => b.classList.toggle('active', b === this));
-                    allProjectCards.forEach(card => {
-                        const cat = card.getAttribute('data-category');
-                        card.classList.toggle('hidden-card', filter !== 'all' && cat !== filter);
-                    });
+                    renderProjectsPage();
                 });
             });
+
+            prevPageBtn.addEventListener('click', () => {
+                if (currentPage > 1) changePage(currentPage - 1);
+            });
+
+            nextPageBtn.addEventListener('click', () => {
+                const matching = allProjectCards.filter(card => {
+                    const cat = card.getAttribute('data-category');
+                    return activeFilter === 'all' || cat === activeFilter;
+                });
+                const totalPages = Math.max(1, Math.ceil(matching.length / PROJECTS_PER_PAGE));
+                if (currentPage < totalPages) changePage(currentPage + 1);
+            });
+
+            pageDotsWrap.addEventListener('click', (e) => {
+                const dot = e.target.closest('.page-dot');
+                if (dot) changePage(Number(dot.getAttribute('data-page')));
+            });
+
+            renderProjectsPage();
 
             // Simple project card click redirect
             document.querySelectorAll('.simple-card[data-href]').forEach(card => {
