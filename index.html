@@ -7,6 +7,7 @@
     <title>Mukesh Madipelly — Associate Software Engineer (AI &amp; Automation)</title>
     <meta name="description"
         content="Portfolio of Mukesh Madipelly — AI-focused Associate Software Engineer experienced in Python, LLM applications, RAG systems, AI agents, and browser test automation.">
+    <link rel="icon" type="image/png" href="./Images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -116,18 +117,29 @@
         }
 
         .brand-mark {
-            width: 2.1rem;
-            height: 2.1rem;
-            border-radius: 0.55rem;
-            background: linear-gradient(135deg, var(--accent), var(--accent-indigo));
-            color: #070b14;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 0.62rem;
+            background: linear-gradient(145deg, rgba(17, 25, 44, 0.95), rgba(7, 11, 20, 0.95));
+            border: 1px solid rgba(56, 189, 248, 0.4);
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-family: var(--font-mono);
-            font-size: 0.82rem;
-            font-weight: 700;
-            box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            transition: var(--transition);
+        }
+
+        .nav-brand:hover .brand-mark {
+            border-color: var(--accent);
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .brand-mark img {
+            width: 1.7rem;
+            height: 1.7rem;
+            object-fit: contain;
+            display: block;
         }
 
         .nav-menu {
@@ -565,6 +577,8 @@
             color: var(--ink-muted);
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid var(--border-glass);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .exp-tab-badge.current {
@@ -754,7 +768,7 @@
         /* 3D Flip Card Wrapper for the 3 AI Projects */
         .flip-card {
             perspective: 1200px;
-            min-height: 420px;
+            min-height: 455px;
             height: 100%;
         }
 
@@ -810,7 +824,7 @@
 
         /* Simple Glassy Cards for the remaining 3 projects (same height) */
         .simple-card {
-            min-height: 420px;
+            min-height: 455px;
             height: 100%;
             border-radius: var(--radius-md);
             padding: 1.65rem;
@@ -1369,6 +1383,20 @@
             box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.16);
         }
 
+        .form-group input:-webkit-autofill,
+        .form-group input:-webkit-autofill:hover,
+        .form-group input:-webkit-autofill:focus,
+        .form-group textarea:-webkit-autofill,
+        .form-group textarea:-webkit-autofill:hover,
+        .form-group textarea:-webkit-autofill:focus {
+            -webkit-text-fill-color: var(--ink-primary);
+            -webkit-box-shadow: 0 0 0 1000px #0b1120 inset;
+            box-shadow: 0 0 0 1000px #0b1120 inset;
+            border-color: var(--border-glass);
+            caret-color: var(--ink-primary);
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
         .form-group textarea {
             resize: vertical;
             min-height: 120px;
@@ -1551,7 +1579,9 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-brand">
-                <span class="brand-mark">MM</span>
+                <span class="brand-mark">
+                    <img src="./Images/logo.png" alt="Mukesh Madipelly Logo">
+                </span>
                 <span>Mukesh Madipelly</span>
             </a>
             <ul class="nav-menu" id="nav-menu">
@@ -1604,7 +1634,7 @@
                         </span>
                         <span class="capability-pill">
                             <i class="fas fa-code"></i>
-                            Python · Java · Next.js
+                            Python · AI &amp; ML
                         </span>
                     </div>
                     <div class="hero-buttons">
@@ -1732,8 +1762,8 @@
                             </div>
                             <h3 class="project-title">DB Agent — AI Database Intelligence</h3>
                             <p class="project-description">
-                                Autonomous AI agent for PostgreSQL &amp; Snowflake that profiles schemas in real time and
-                                delivers business intelligence via natural language.
+                                Autonomous AI agent for PostgreSQL &amp; Snowflake that profiles schemas and delivers
+                                natural-language business intelligence.
                             </p>
                             <div class="tech-stack">
                                 <span class="tech-tag">Python</span>
@@ -2206,10 +2236,10 @@
                             <i class="fas fa-envelope"></i>
                             <a href="mailto:mukeshmadipelly03@gmail.com">mukeshmadipelly03@gmail.com</a>
                         </div>
-                        <div class="contact-item">
+                        <!-- <div class="contact-item">
                             <i class="fas fa-phone"></i>
                             <a href="tel:+918985122372">+91 89851 22372</a>
-                        </div>
+                        </div> -->
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <span>Hyderabad, India</span>
@@ -2590,19 +2620,23 @@
 
                     try {
                         const response = await fetch(
-                            'https://api.formbee.dev/formbee/f547abc8-144f-4337-bfe8-83cd1ae5f4cf',
+                            'https://formsubmit.co/ajax/mukeshmadipelly03@gmail.com',
                             {
                                 method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Accept': 'application/json'
+                                },
                                 body: JSON.stringify(formObject)
                             }
                         );
 
-                        if (response.ok) {
+                        const result = await response.json().catch(() => ({}));
+                        if (response.ok && result.success !== 'false') {
                             showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
                             ev.target.reset();
                         } else {
-                            showNotification('Form submission failed. Please try again or email directly.', 'error');
+                            showNotification(result.message || 'Form submission failed. Please try again or email directly.', 'error');
                         }
                     } catch (error) {
                         console.error('Error submitting form:', error);
