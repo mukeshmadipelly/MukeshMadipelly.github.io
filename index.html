@@ -2198,8 +2198,8 @@
             }
         });
 
-    // Chatbot: import router and expose globally
-    (async () => {
+    // Chatbot: import router, then wire up the widget (after DOM ready)
+    document.addEventListener('DOMContentLoaded', async () => {
         const { routeQuestion } = await import('./chatbot.mjs');
         window.routeQuestion = routeQuestion;
 
@@ -2291,7 +2291,7 @@
             setPanelOpen(false);
         }
     });
-    })();
+    });
 </script>
 
 <!-- Chatbot Widget Markup -->
